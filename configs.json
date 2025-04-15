@@ -1,0 +1,20 @@
+{
+    "Constants": {
+        "user_agent": "Mozilla/5.0",
+        "base_url": "https://stackoverflow.com",
+        "tag": "python",
+        "interval": "3",
+        "retries": "3",
+        "delay": "2",
+        "max_questions": "50"
+    },
+    "ParsConstants": {
+        "post_summary": ".s-post-summary",
+        "post_title": ".s-post-summary--content-title a",
+        "excerpt_elem": ".s-post-summary--content-excerpt",
+        "timestamp_elem": ".relativetime",
+        "vote_elem": ".s-post-summary--stats-item:nth-child(1) span",
+        "answer_elem": ".s-post-summary--stats-item:nth-child(2) span",
+        "view_elem": ".s-post-summary--stats-item:nth-child(3) span"
+    }
+}

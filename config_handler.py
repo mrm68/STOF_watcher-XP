@@ -6,14 +6,20 @@ import json
 
 
 class i_config_handler(ABC):
-    @classmethod
-    def read_config(cls):
+    def _read_config(self):
         """responsible for extracting crawl config from json file"""
         pass
 
-    @classmethod
-    def read_parse_constants(cls):
+    def _read_parse_constants(self):
         """responsible for extracting element parsing cnstants"""
+        pass
+
+    def get_crawl_config(self):
+        """responsible for returning crawl config from json file"""
+        pass
+
+    def get_parse_config(self):
+        """responsible for returning element parsing cnstants"""
         pass
 
 
@@ -22,20 +28,24 @@ class config_handler(i_config_handler):
         for key, value in kwargs.items():
             setattr(self, key, value)
 
-    @classmethod
-    def read_config(cls, file_path: Optional[str] = "configs.json"):
+    def _read_config(self, file_path: Optional[str] = "configs.json"):
         with open(file_path, 'r') as f:
             config_data = json.load(f)
         if "Constants" in config_data:
-            result = cls(**config_data["Constants"])
+            result = config_handler(**config_data["Constants"])
             print(vars(result))
             return result
 
-    @classmethod
-    def read_parse_constants(cls, file_path: Optional[str] = "configs.json"):
+    def _read_parse_constants(self, file_path: Optional[str] = "configs.json"):
         with open(file_path, 'r') as f:
             constant_data = json.load(f)
         if "ParsConstants" in constant_data:
-            result = cls(**constant_data["ParsConstants"])
+            result = config_handler(**constant_data["ParsConstants"])
             print(vars(result))
             return result
+
+    def get_crawl_config(self, file_path: Optional[str] = "configs.json"):
+        return self._read_config()
+
+    def get_parse_config(self, file_path: Optional[str] = "configs.json"):
+        return self._read_parse_constants()
